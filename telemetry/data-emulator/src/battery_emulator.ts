@@ -6,7 +6,7 @@ const HOST = "streaming-service";
 const PORT = 12000;
 
 const MILLISECONDS = 500;
-const ERROR_CHANCE = 15;
+const ERROR_CHANCE = 3;
 
 function generate_and_send_battery_data() {
   let generated_value: number = 0;
@@ -31,9 +31,9 @@ function generate_and_send_battery_data() {
 
   if (!(tcpClient.destroyed || tcpClient.closed)) {
     let json_string = JSON.stringify(data);
-    if (error_flag === 3) {
-      json_string += "}";
-    }
+    // if (error_flag === 3) {
+    //   json_string += "}";
+    // }
     tcpClient.write(json_string);
   } else {
     console.log("connection to server closed");
