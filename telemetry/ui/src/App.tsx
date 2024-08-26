@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import LiveValue from "./live_value";
-import RedbackLogo from "./redback_logo.jpg";
+// import RedbackLogo from "./redback_logo.jpg";
+import RedbackLogo from "./redback25th.png";
 import "./App.css";
 import useWebSocket, { ReadyState } from "react-use-websocket";
 
