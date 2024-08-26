@@ -25,12 +25,16 @@ tcpServer.on("connection", (socket) => {
     // Send JSON over WS to frontend clients
     websocketServer.clients.forEach(function each(client) {
       if (client.readyState === WebSocket.OPEN) {
-        if (tempExceed(jsonData, tempExceedRecords)) {
+        let {records, isError} = tempExceed(jsonData, tempExceedRecords);
+
+        if (isError) {
           console.log(`Current time: ${Date.now()}`);
           console.log("Received battery temperature exceeds more than 3 times within 5 seconds");
         } else {
           client.send(msg.toString());
         }
+
+        tempExceedRecords = records;
       }
     });
   });

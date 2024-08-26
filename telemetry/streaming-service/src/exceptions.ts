@@ -10,16 +10,26 @@ export function tempExceed(jsonData: VehicleData, tempExceedRecords: number[]) {
 	let temperature = jsonData.battery_temperature;
 
 	if (temperature < 20 || temperature > 80) {
-		let now = (Date.now());
+		let now = jsonData.timestamp;
 		// Remove all records that is not within 5 seconds
-		while (tempExceedRecords.length > 0 && now - tempExceedRecords.indexOf(0) > 5000) {
-		tempExceedRecords.shift();
+		while (true) {
+			let earliestRecord = tempExceedRecords.at(0);
+			if (earliestRecord != undefined && now - earliestRecord > 5000) {
+				tempExceedRecords.shift();
+			} else {
+				break;
+			}
 		}
-		
 		tempExceedRecords.push(now);
 		if (tempExceedRecords.length > 3) {
-				return true;
+				return {
+					records: tempExceedRecords,
+					isError: true
+				}
 		}
 	}
-	return false;
+	return {
+		records: tempExceedRecords,
+		isError: false
+	}
 }
