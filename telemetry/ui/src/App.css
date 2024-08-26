@@ -1,9 +1,10 @@
 .App {
   text-align: center;
+  /* background: linear-gradient(to top, #00008b, #000); */
 }
 
 .App-header {
-  background-color: #000000;
+  background-color: black;
   min-height: 10vh;
   display: flex;
   flex-direction: column;
@@ -14,9 +15,12 @@
 }
 
 .live-value {
-  color: white;
+  border: 5px solid white;
   font-size: calc(100px + 2vmin);
+  min-width: 350px;
   padding: 5%;
+  font-family: "Open Sans";
+  background-color: rgba(44, 44, 44, 0.7);
 }
 
 .redback-logo {
@@ -28,5 +32,6 @@
 
 .value-title {
   font-size: calc(25px + 2vmin);
+  font-family: "Open Sans";
 }
 
