@@ -1,7 +1,8 @@
 import net from "net";
 import { WebSocket, WebSocketServer } from "ws";
+import { tempExceed } from "./exceptions";
 
-interface VehicleData {
+export interface VehicleData {
   battery_temperature: number;
   timestamp: number;
 }
@@ -14,6 +15,8 @@ const websocketServer = new WebSocketServer({ port: WS_PORT });
 tcpServer.on("connection", (socket) => {
   console.log("TCP client connected");
 
+  let tempExceedRecords: number[] = [];
+
   socket.on("data", (msg) => {
     console.log(`Received: ${msg.toString()}`);
 
@@ -22,7 +25,12 @@ tcpServer.on("connection", (socket) => {
     // Send JSON over WS to frontend clients
     websocketServer.clients.forEach(function each(client) {
       if (client.readyState === WebSocket.OPEN) {
-        client.send(msg.toString());
+        if (tempExceed(jsonData, tempExceedRecords)) {
+          console.log(`Current time: ${Date.now()}`);
+          console.log("Received battery temperature exceeds more than 3 times within 5 seconds");
+        } else {
+          client.send(msg.toString());
+        }
       }
     });
   });
