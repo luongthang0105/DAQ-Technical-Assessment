@@ -25,7 +25,7 @@ tcpServer.on("connection", (socket) => {
     // Send JSON over WS to frontend clients
     websocketServer.clients.forEach(function each(client) {
       if (client.readyState === WebSocket.OPEN) {
-        let {records, isError} = tempExceed(jsonData, tempExceedRecords);
+        let isError = tempExceed(jsonData, tempExceedRecords);
 
         if (isError) {
           console.log(`Current time: ${Date.now()}`);
@@ -33,8 +33,6 @@ tcpServer.on("connection", (socket) => {
         } else {
           client.send(msg.toString());
         }
-
-        tempExceedRecords = records;
       }
     });
   });

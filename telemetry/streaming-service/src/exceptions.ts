@@ -22,14 +22,8 @@ export function tempExceed(jsonData: VehicleData, tempExceedRecords: number[]) {
 		}
 		tempExceedRecords.push(now);
 		if (tempExceedRecords.length > 3) {
-				return {
-					records: tempExceedRecords,
-					isError: true
-				}
+				return true;
 		}
 	}
-	return {
-		records: tempExceedRecords,
-		isError: false
-	}
+	return false;
 }
