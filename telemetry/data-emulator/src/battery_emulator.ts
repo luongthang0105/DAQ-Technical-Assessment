@@ -6,7 +6,7 @@ const HOST = "streaming-service";
 const PORT = 12000;
 
 const MILLISECONDS = 500;
-const ERROR_CHANCE = 3;
+const ERROR_CHANCE = 10;
 
 function generate_and_send_battery_data() {
   let generated_value: number = 0;
