@@ -4,6 +4,14 @@ This file is used to document your thoughts, approaches and research conducted a
 
 ## Firmware
 
+I decided to use this [library](https://github.com/xR3b0rn/dbcppp) to help me out with parsing CAN frames from the dump file.
+
+I copied the usage example code from the library, mainly for loading the DBC file and processing the signals. I also decide to tweak the definition of the example **struct can_frame** to fit this particular exercise.
+
+The main coding challenges was parsing the CAN dump log, which I found to be interesting. I learnt about how to split a line into words using a delimiter in C++ (like Python split() but in C++).
+
+I was a bit confused about the big/little-endianess part when it shows an error when I parse the DBC file. Luckily Shady came in just in time and helped everybody fix that.
+
 ## Telemetry
 
 ### Task 1

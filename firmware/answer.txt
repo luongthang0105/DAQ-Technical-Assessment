@@ -1,3 +1,16 @@
 Use this file to write your answer to Stage 2 of the firmware tasks.
 
 Question 1:
+I'm not very familiar with any of these protocols so I'll try to do my best based on my understanding!
+Advantages of CAN:
+- It has the DBC file to define CAN Frames. This is a huge advantage compared to other protocols because it does not provide a way to configure data definitions.
+
+- DBC file operations are supported by libraries, such as DBCPPP. With the help of this library, working with DBC files is much easier than parsing it ourselves.
+
+- It's highly configurable since the DBC file can be adjusted accordingly. This means that we can add/remove/change the definition of the CAN frame however we want.
+
+- Definitions of a CAN frame is fairly straightforward.
+
+Disadvantages:
+- Changing the DBC file may lead to changes in other departments. In particular, changing the definition of ECU_WheelSpeed may lead to other teams changing how data should be encoded and sent.
+- Definitions of CAN frames may be wrong and may not be very straightforward to figure out why
